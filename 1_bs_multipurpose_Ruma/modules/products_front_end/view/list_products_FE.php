@@ -10,6 +10,18 @@
         </div>
     </div>
 </section>
+
+<!-- Barra de Busqueda Productos-->
+<center>
+<form name="search_prod" id="search_prod" class="search_prod">
+    <input type="text" value="" placeholder="Search Product ..." class="input_search" id="keyword" list="datalist">
+    <!-- <div id="results_keyword"></div> -->
+    <input name="Submit" id="Submit" class="button_search" type="button" value="Buscar" />
+
+</form>
+</center>
+<!-- FIN Barra de Busqueda Productos-->
+
     <!--/.HEADING END-->
 <div id="results"></div>
 

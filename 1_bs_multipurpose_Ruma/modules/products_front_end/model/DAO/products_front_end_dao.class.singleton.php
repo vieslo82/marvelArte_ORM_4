@@ -51,4 +51,39 @@ class listar_dao
 
         return $db->listar($stmt);
     }
+
+    public function select_column_products_DAO($db, $arrArgument)
+    {
+        $sql = 'SELECT '.$arrArgument.' FROM cuadros ORDER BY '.$arrArgument;
+
+        $stmt = $db->ejecutar($sql);
+
+        return $db->listar($stmt);
+    }
+
+    public function select_like_products_DAO($db, $arrArgument)
+    {
+        $sql = 'SELECT DISTINCT * FROM cuadros WHERE '.$arrArgument['column']." like '%".$arrArgument['like']."%'";
+
+        $stmt = $db->ejecutar($sql);
+
+        return $db->listar($stmt);
+    }
+    public function count_like_products_DAO($db, $arrArgument)
+    {
+        $sql = "SELECT COUNT(*) as total FROM cuadros WHERE " .$arrArgument['column']." like '%".$arrArgument['like']."%'";
+
+
+        $stmt = $db->ejecutar($sql);
+
+        return $db->listar($stmt);
+    }
+    public function select_like_limit_products_DAO($db, $arrArgument)
+    {
+        $sql = "SELECT DISTINCT * FROM cuadros WHERE " .$arrArgument['column']." like '%".$arrArgument['like']."%' ORDER BY Codigo ASC LIMIT ".$arrArgument['position'].' , '.$arrArgument['limit'];
+
+        $stmt = $db->ejecutar($sql);
+
+        return $db->listar($stmt);
+    }
 }

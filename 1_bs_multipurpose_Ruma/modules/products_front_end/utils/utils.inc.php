@@ -28,7 +28,7 @@ function paint_template_error($message)
 function paint_template_products($arrData)
 {
     // NO ME FUNCIONA ASÏ EL SCRIPT Lo Inserto en el Header
-    //echo "<script type='text/javascript' src='modules/products_front_end/view/js/modal_products.js' ></script>";
+    //echo "<script type='text/javascript' src='modules/products_front_end/view/js/modal_products_2.js' ></script>";
 
     echo '<section >';
     echo "<div class='container'>";
@@ -52,4 +52,24 @@ function paint_template_products($arrData)
     echo '</div>';
     echo '</div>';
     echo '</section>';
+}
+
+//Esta Parte es Nueva
+
+function paint_template_search($message)
+{
+    $log = Log::getInstance();
+    $log->add_log_general('error paint_template_search', 'products', 'response '.http_response_code()); //$text, $controller, $function
+    $log->add_log_user('error paint_template_search', '', 'products', 'response '.http_response_code()); //$msg, $username = "", $controller, $function
+
+    echo "<section> \n";
+    echo "<div class='container'> \n";
+    echo "<div class='row text-center pad-row'> \n";
+
+    echo '<h2>'.$message."</h2> \n";
+    echo "<br><br><br><br> \n";
+
+    echo "</div> \n";
+    echo "</div> \n";
+    echo "</section> \n";
 }

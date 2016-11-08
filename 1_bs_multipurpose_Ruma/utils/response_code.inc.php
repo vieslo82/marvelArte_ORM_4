@@ -1,7 +1,8 @@
 <?php
 
-function response_code($code = NULL) {
-    if ($code !== NULL) {
+function response_code($code = null)
+{
+    if ($code !== null) {
         switch ($code) {
             case 100: $text = 'Continue';
                 break;
@@ -78,16 +79,18 @@ function response_code($code = NULL) {
             case 505: $text = 'HTTP Version not supported';
                 break;
             default:
-                exit('Unknown http status code "' . htmlentities($code) . '"');
+                exit('Unknown http status code "'.htmlentities($code).'"');
                 break;
         }
     } else {
         $code = 200;
     }
+
     return $return = array('code' => $code, 'text' => $text);
 }
 
-function showErrorPage($code = 0, $message = "", $http = "", $num_http = 0) {
+function showErrorPage($code = 0, $message = '', $http = '', $num_http = 0)
+{
     switch ($code) {
         case 0:
             paint_template_error($message);
@@ -99,39 +102,44 @@ function showErrorPage($code = 0, $message = "", $http = "", $num_http = 0) {
             break;
         case 2:
             $log = Log::getInstance();
-            $log->add_log_general($message, "", "response " . http_response_code()); //$text, $controller, $function
-            $log->add_log_user($message, "", "", "response " . http_response_code()); //$msg, $username = "", $controller, $function
+            $log->add_log_general($message, '', 'response '.http_response_code()); //$text, $controller, $function
+            $log->add_log_user($message, '', '', 'response '.http_response_code()); //$msg, $username = "", $controller, $function
 
-            $jsondata["error"] = $message;
-            header($http, true, $num_http);
+            $jsondata['error'] = $message;
+            //header($http, true, $num_http); QUITAMOS ESTA SENTENCIA EN LA PARTE NUEVA
             echo json_encode($jsondata);
+            exit;
+            break;
+        case 3://PARTE NUEVA
+            paint_template_search($message);
             exit;
             break;
     }
 }
 
-function ErrorHandler($errno, $errstr, $errfile, $errline) {
-    $error = "";
+function ErrorHandler($errno, $errstr, $errfile, $errline)
+{
+    $error = '';
     switch ($errno) {
         case E_NOTICE:
         case E_USER_NOTICE:
-            $error = "Notice";
+            $error = 'Notice';
             break;
         case E_WARNING:
         case E_USER_WARNING:
-            $error = "Warning";
+            $error = 'Warning';
             break;
         case E_ERROR:
         case E_USER_ERROR:
-            $error = "Fatal Error";
+            $error = 'Fatal Error';
             break;
         default:
-            $error = "Unknown Error";
+            $error = 'Unknown Error';
             break;
     }
-    $msg = "ERROR: [$errno] $errstr\r\n" . "$error on line $errline in file $errfile\r\n";
+    $msg = "ERROR: [$errno] $errstr\r\n"."$error on line $errline in file $errfile\r\n";
 
     $log = Log::getInstance();
-    $log->add_log_general($msg, $_SESSION['module'], "response " . http_response_code()); //$text, $controller, $function
-    $log->add_log_user($msg, "", $_SESSION['module'], "response " . http_response_code()); //$msg, $username = "", $controller, $function
+    $log->add_log_general($msg, $_SESSION['module'], 'response '.http_response_code()); //$text, $controller, $function
+    $log->add_log_user($msg, '', $_SESSION['module'], 'response '.http_response_code()); //$msg, $username = "", $controller, $function
 }
