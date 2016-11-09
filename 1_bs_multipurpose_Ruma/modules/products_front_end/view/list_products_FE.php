@@ -52,3 +52,26 @@
 
     </div>
 </section>
+
+<section >
+    <div class="container" id="product">
+
+
+        <div class="media">
+            <div class="pull-left">
+                <div id="Imagen" class="img_product"></div>
+            </div>
+            <div class="media-body">
+                <div id="text-product">
+                <h3 class="media-heading title-product" id="titulo"></h3>
+                <h2  id="artista"></h2>
+                <h3 class="media-heading title-product" id="precio"></h3>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</section>

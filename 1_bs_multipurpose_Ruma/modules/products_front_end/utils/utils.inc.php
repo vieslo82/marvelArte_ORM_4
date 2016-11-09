@@ -27,31 +27,55 @@ function paint_template_error($message)
 
 function paint_template_products($arrData)
 {
-    // NO ME FUNCIONA ASÏ EL SCRIPT Lo Inserto en el Header
-    //echo "<script type='text/javascript' src='modules/products_front_end/view/js/modal_products_2.js' ></script>";
 
-    echo '<section >';
-    echo "<div class='container'>";
-    echo "<div id='list_prod' class='row text-center pad-row'>";
-    echo "<ol class='breadcrumb'>";
-    echo "<li class='active' >Products</li>";
-    echo '</ol>';
-    echo '<br>';
-    echo '<br>';
-    echo '<br>';
-    echo '<br>';
+    echo '<script type="text/javascript" src="modules/products_front_end/view/js/modal_products_2.js" ></script>';
+    echo '<section id="services" >';
+    echo '<div class="container">';
+
+    echo '<div class="table-display">';
+
     if (isset($arrData) && !empty($arrData)) {
+        $i = 0;
         foreach ($arrData as $product) {
-            echo "<div class='prod' id='".$product['Codigo']."'>";
-            echo "<img class='prodImg' src='".$product['Imagen']."'alt='product' >";
-            echo '<p>'.$product['Titulo'].'</p>';
-            echo "<p id='p2'>".$product['Precio'].'€</p>';
+            ++$i;
+            if (count($arrData) % 2 !== 0 && i >= count($arrData)) {
+                print  '<div class="odd_prod">';
+            } else {
+                if ($i % 2 != 0) {
+                    print  '<div class="table-row">';
+                } else {
+                    print '<div class="table-separator"></div>';
+                }
+            }
+            echo '<div class="table-cell">';
+
+            echo '<div class="media">';
+            echo '<div class="pull-left">';
+            echo '<img src="'.$product['Imagen'].'" class="icon-md" height="80" width="80">';
             echo '</div>';
+            echo '<div class="media-body">';
+            echo '<h3 class="media-heading">'.$product['Titulo'].'</h3>';
+            echo '<h5> <strong>Precio:'.$product['Precio'].'</strong><strong>€</strong> </h5>';
+            echo "<div id='".$product['Codigo']."' class='product_name'> Read Details </div>";
+
+            echo '</div>';
+            echo '</div>';
+            echo '<br>';
+
+            echo '</div>';
+            if (count($arrData) % 2 !== 0 && i >= count($arrData)) {
+                print  '</div>';
+            } else {
+                if ($i % 2 == 0) {
+                    print '</div> <br>';
+                }
+            }
         }
     }
+
     echo '</div>';
     echo '</div>';
-    echo '</section>';
+    echo '</section> ';
 }
 
 //Esta Parte es Nueva

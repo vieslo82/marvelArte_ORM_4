@@ -37,7 +37,7 @@ function search(keyword) {
         $("#results").load(url);
 
         if (pages !== 0) {
-          //  refresh();
+          refresh();
 
             $(".pagination").bootpag({
                 total: pages,
@@ -61,9 +61,6 @@ function search(keyword) {
        } else {
             $("#results").load("modules/products_front_end/controller/controller_products_front_end.class.php?view_error=false"); //view_error=false
             $('.pagination').html('');
-
-                  $('.prod').unbind('click');
-                  $('.prod').bind('click', viewDetail);// al clickar llamamos funcion del Modal
             reset();
         }
         reset();
@@ -158,7 +155,7 @@ $(document).ready(function() {
         var v_keyword = validate_search(keyword);
         if (v_keyword)
             setCookie("search", keyword, 1);
-        //lert("getCookie(search)1: " + getCookie("search"));
+        //alert("getCookie(search)1: " + getCookie("search"));
         location.reload(true);
 
 

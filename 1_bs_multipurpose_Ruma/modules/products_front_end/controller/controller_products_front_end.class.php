@@ -16,7 +16,7 @@ $_SESSION['module'] = 'products_front_end';
 
 if ((isset($_GET['autocomplete'])) && ($_GET['autocomplete'] === 'true')) {
     set_error_handler('ErrorHandler');
-      $path_model = $_SERVER['DOCUMENT_ROOT'].'/php/marvelArte_ORM_4/1_bs_multipurpose_Ruma/modules/products_front_end/model/model/';
+    $path_model = $_SERVER['DOCUMENT_ROOT'].'/php/marvelArte_ORM_4/1_bs_multipurpose_Ruma/modules/products_front_end/model/model/';
       //echo json_encode($path_model);
     try {
         $nameProducts = loadModel($path_model, 'products_front_end_model', 'select_column_products', 'Titulo');
@@ -44,7 +44,7 @@ if (($_GET['nombre_cuadro'])) {
     } else {
         $criteria = '';
     }
-      $path_model = $_SERVER['DOCUMENT_ROOT'].'/php/marvelArte_ORM_4/1_bs_multipurpose_Ruma/modules/products_front_end/model/model/';
+    $path_model = $_SERVER['DOCUMENT_ROOT'].'/php/marvelArte_ORM_4/1_bs_multipurpose_Ruma/modules/products_front_end/model/model/';
     set_error_handler('ErrorHandler');
     try {
         $arrArgument = array(
@@ -78,7 +78,7 @@ if (($_GET['total_products'])) {
     } else {
         $criteria = '';
     }
-      $path_model = $_SERVER['DOCUMENT_ROOT'].'/php/marvelArte_ORM_4/1_bs_multipurpose_Ruma/modules/products_front_end/model/model/';
+    $path_model = $_SERVER['DOCUMENT_ROOT'].'/php/marvelArte_ORM_4/1_bs_multipurpose_Ruma/modules/products_front_end/model/model/';
     set_error_handler('ErrorHandler');
     try {
         $arrArgument = array(
@@ -115,7 +115,7 @@ if ((isset($_GET['num_pages'])) && ($_GET['num_pages'] === 'true')) {
         $criteria = '';
     }
     $item_per_page = 6;
-      $path_model = $_SERVER['DOCUMENT_ROOT'].'/php/marvelArte_ORM_4/1_bs_multipurpose_Ruma/modules/products_front_end/model/model/';
+    $path_model = $_SERVER['DOCUMENT_ROOT'].'/php/marvelArte_ORM_4/1_bs_multipurpose_Ruma/modules/products_front_end/model/model/';
     set_error_handler('ErrorHandler');
     try {
         //loadmodel
@@ -127,7 +127,7 @@ if ((isset($_GET['num_pages'])) && ($_GET['num_pages'] === 'true')) {
         $resultado = loadModel($path_model, 'products_front_end_model', 'count_like_products', $arrArgument);
 
         $resultado = $resultado[0]['total'];
-          $jsondata['column'] = $resultado;
+        $jsondata['column'] = $resultado;
         $pages = ceil($resultado / $item_per_page); //break total records into pages
     } catch (Exception $e) {
         showErrorPage(2, 'ERROR - 503 BD', 'HTTP/1.0 503 Service Unavailable', 503);
@@ -155,7 +155,8 @@ if ((isset($_GET['view_error'])) && ($_GET['view_error'] === 'false')) {
 }
 
 if (isset($_GET['cod_cuadro'])) {
-    $arrValue = null;
+    //$arrValue = null;
+
     //filter if idProduct is a number
     //$result = filter_num_int($_GET['cod_cuadro']);
     $result = $_GET['cod_cuadro'];

@@ -1,24 +1,24 @@
 $(document).ready(function () {
-    $('.Titulo_Cuadro').click(function () {
+    $('.product_name').click(function () {
         var id = this.getAttribute('id');
         //alert(id);
 
-        $.get("modules/products/controller/controller_products.class.php?cod_cuadro=" + id, function (data, status) {
+        $.get("modules/products_front_end/controller/controller_products_front_end.class.php?cod_cuadro=" + id, function (data, status) {
+
             var json = JSON.parse(data);
             var product = json.product;
-
             $('#results').html('');
             $('.pagination').html('');
 
-            var img_product = document.getElementById('Imagen_Cuadro');
-            img_product.innerHTML = '<img src="' + product[0].Imagen + '" class="img-product"> ';
+            var img = document.getElementById('Imagen');
+            img.innerHTML = '<img src="' + product.Imagen + '" class="img-product"> ';
 
-            var nom_product = document.getElementById('Titulo_Cuadro');
-            nom_product.innerHTML = product[0].Titulo;
-            var artista_product = document.getElementById('Artista_Cuadro');
-            artista_product.innerHTML = product[0].Artista;
-            var price_product = document.getElementById('Precio_Cuadro');
-            price_product.innerHTML = "Precio: " + product[0].Precio + " €";
+            var nom_cuadro = document.getElementById('titulo');
+            nom_cuadro.innerHTML = product.Titulo;
+            var artista_cuadro = document.getElementById('artista');
+            artista_cuadro.innerHTML = product.Artista;
+            var precio_cuadro = document.getElementById('precio');
+            precio_cuadro.innerHTML = "Precio: " + product.Precio + " €";
             price_product.setAttribute("class", "special");
 
            /* $("#product").dialog({
